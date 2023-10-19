@@ -1,3 +1,4 @@
+const { config } = require("dotenv");
 const express = require("express");
 
 require("express-async-errors");
@@ -9,6 +10,7 @@ const errorHandler = require("./app/middlewares/errorHandler");
 const app = express();
 
 app.use(express.json());
+config();
 
 app.use(cors);
 
@@ -19,5 +21,5 @@ app.use(errorHandler);
 const port = process.env.PORT || 3333;
 
 app.listen(port, () => {
-  console.log("🔥 Server started at http://localhost:3333' 🔥");
+  console.log(`🔥 Server started at http://localhost:${port}' 🔥`);
 });
