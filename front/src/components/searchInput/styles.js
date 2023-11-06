@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100%;
-
-  input{
+export const InputContainer = styled.input`
     width: 100%;
     border-radius: 24px;
     background:  #fff;
@@ -15,5 +12,4 @@ export const Container = styled.div`
     &::placeholder{
       color: #BCBCBC;
     }
-  }
 `;
