@@ -66,7 +66,12 @@ export const ContainerButton = styled.button`
 
 `;
 
-export const IconButton = styled.span``;
+export const IconButton = styled.span`
+  svg{
+    transform: ${({ orderBy }) => (orderBy === 'asc' ? 'rotate(180deg)' : 'rotate(0deg)')};
+    transition: all 0.2s ease-in;
+  }
+`;
 
 export const TextButton = styled.span`
   font-size: 1.125rem;
