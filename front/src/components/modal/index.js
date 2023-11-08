@@ -7,7 +7,7 @@ import { Button } from '../button';
 import * as S from './styles';
 
 export function Modal({
-  title, description, cancel, confirm, closeModal, isDanger,
+  title, description, cancelButton, confirmButton, closeModal, isDanger, confirmActionDelete,
 }) {
   return ReactDOM.createPortal(
     <S.Overlay>
@@ -18,8 +18,8 @@ export function Modal({
         </S.Description>
         <S.Footer>
           <S.Wrapper>
-            <Button type="button" name={cancel} variant="link" color="gray" title="cancelar" onClick={closeModal} />
-            <Button name={confirm} variant="primary" color={isDanger ? 'danger' : 'primary'} title="remover" />
+            <Button type="button" name={cancelButton} variant="link" color="gray" title="cancelar" onClick={closeModal} />
+            <Button name={confirmButton} variant="primary" color={isDanger ? 'danger' : 'primary'} title="remover" onClick={confirmActionDelete} />
           </S.Wrapper>
         </S.Footer>
       </S.Container>
@@ -31,9 +31,10 @@ export function Modal({
 Modal.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  cancel: PropTypes.string.isRequired,
-  confirm: PropTypes.string.isRequired,
+  cancelButton: PropTypes.string.isRequired,
+  confirmButton: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
+  confirmActionDelete: PropTypes.func.isRequired,
   isDanger: PropTypes.bool,
 };
 
