@@ -38,7 +38,7 @@ export const ListContainer = styled.div`
 
 `;
 
-export const ButtonContainer = styled.div`
+export const ButtonContainer = styled.header`
   display: flex;
   width: 100px;
   justify-content: flex-start;
