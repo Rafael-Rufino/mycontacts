@@ -38,6 +38,14 @@ Tecnologias utilizadas durante o projeto:
 - CRUD
 - Responsividade
 
+## ⭐ Conceitos implantados - Front-end
+
+- Solid
+- Design Patterns
+- Clean Code
+- Performace, Qualidade de Codigo e Padrões de código
+- Melhora na UX - Experiencia do usuario
+
 ## ⭐ Conceitos implantados - Back-end
 
 - Responsabilidade Única (Separados por folders controllers, repositories e middlewares)
