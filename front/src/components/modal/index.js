@@ -7,7 +7,13 @@ import { Button } from '../button';
 import * as S from './styles';
 
 export function Modal({
-  title, description, cancelButton, confirmButton, closeModal, isDanger, confirmActionDelete,
+  title,
+  description,
+  cancelButton,
+  confirmButton,
+  closeModal,
+  isDanger,
+  confirmActionDelete,
 }) {
   return ReactDOM.createPortal(
     <S.Overlay>

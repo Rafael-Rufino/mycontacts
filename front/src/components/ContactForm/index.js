@@ -71,7 +71,7 @@ export function ContactForm({ buttonLabel }) {
       email,
       name,
       category,
-      phone: phoneRef.current.value.replace(/\D/g, ''),
+      phone: formatPhone(phoneRef.current.value),
 
     };
 
