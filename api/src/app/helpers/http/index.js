@@ -6,4 +6,5 @@ const HttpStatusCode = {
   NOT_FOUND: 404, // Recurso não encontrado
   INTERNAL_SERVER: 500, // Erro interno do servidor
 };
-export { HttpStatusCode };
+
+module.exports = { HttpStatusCode };
