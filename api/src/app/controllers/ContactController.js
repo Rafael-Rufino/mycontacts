@@ -1,3 +1,4 @@
+const { HttpStatusCode } = require("../helpers/http");
 const ContactsRepository = require("../repositories/ContactsRepository");
 
 class ContactController {
@@ -14,7 +15,9 @@ class ContactController {
     const contact = await ContactsRepository.findById(id);
 
     if (!contact) {
-      return response.status(404).json({ error: "User not found" });
+      return response
+        .status(HttpStatusCode.NOT_FOUND)
+        .json({ error: "User not found" });
     }
 
     return response.json(contact);
@@ -26,12 +29,14 @@ class ContactController {
     const contactExists = await ContactsRepository.findByEmail(email);
 
     if (!name) {
-      return response.status(400).json({ error: "Name is required" });
+      return response
+        .status(HttpStatusCode.BAD_REQUEST)
+        .json({ error: "Name is required" });
     }
 
     if (contactExists) {
       return response
-        .status(400)
+        .status(HttpStatusCode.BAD_REQUEST)
         .json({ error: "This e-mail is already in use" });
     }
 
@@ -42,7 +47,7 @@ class ContactController {
       category_id,
     });
 
-    return response.json(contact);
+    return response.status(HttpStatusCode.CREATED).json(contact);
   }
 
   async delete(request, response) {
@@ -50,7 +55,7 @@ class ContactController {
 
     await ContactsRepository.delete(id);
 
-    return response.status(204).send();
+    return response.status(HttpStatusCode.NO_CONTENT).send();
   }
 
   async update(request, response) {
@@ -60,18 +65,22 @@ class ContactController {
     const contactById = await ContactsRepository.findById(id);
 
     if (!contactById) {
-      return response.status(404).json({ error: "User not found" });
+      return response
+        .status(HttpStatusCode.NOT_FOUND)
+        .json({ error: "User not found" });
     }
 
     if (!name) {
-      return response.status(400).json({ error: "Name is required" });
+      return response
+        .status(HttpStatusCode.BAD_REQUEST)
+        .json({ error: "Name is required" });
     }
 
     const contactByEmail = await ContactsRepository.findByEmail(email);
 
     if (contactByEmail && contactByEmail.id !== id) {
       return response
-        .status(400)
+        .status(HttpStatusCode.BAD_REQUEST)
         .json({ error: "This e-mail is already in use" });
     }
 

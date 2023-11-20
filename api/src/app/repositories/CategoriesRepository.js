@@ -1,4 +1,3 @@
-
 const db = require("../../database");
 
 class CategoriesRepository {
@@ -28,16 +27,21 @@ class CategoriesRepository {
       SET name = $1
       WHERE id = $2
       RETURNING *
-    `, [name, id]);
+    `,
+      [name, id]
+    );
 
     return row;
   }
 
   async delete(id) {
-    const deleteOp = await db.query(`
+    const deleteOp = await db.query(
+      `
       DELETE FROM categories
       WHERE id = $1
-    `, [id]);
+    `,
+      [id]
+    );
 
     return deleteOp;
   }

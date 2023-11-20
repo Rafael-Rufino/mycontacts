@@ -1,3 +1,5 @@
+const { HttpStatusCode } = require("../helpers/http");
+
 const CategoriesRepository = require("../repositories/CategoriesRepository");
 
 class CategoryController {
@@ -11,12 +13,14 @@ class CategoryController {
     const { name } = request.body;
 
     if (!name) {
-      return response.status(400).json({ error: "Name is required" });
+      return response
+        .status(HttpStatusCode.BAD_REQUEST)
+        .json({ error: "Name is required" });
     }
 
     const category = await CategoriesRepository.create({ name });
 
-    return response.json(category);
+    return response.status(HttpStatusCode.CREATED).json(category);
   }
 
   async update(request, response) {
@@ -24,12 +28,14 @@ class CategoryController {
     const { name } = request.body;
 
     if (!name) {
-      return response.status(400).json({ error: "Name is required" });
+      return response
+        .status(HttpStatusCode.BAD_REQUEST)
+        .json({ error: "Name is required" });
     }
 
     const category = await CategoriesRepository.update(id, { name });
 
-    response.status(201).json(category);
+    response.status(HttpStatusCode.CREATED).json(category);
   }
 
   async delete(request, response) {
@@ -37,7 +43,7 @@ class CategoryController {
 
     await CategoriesRepository.delete(id);
 
-    response.sendStatus(204);
+    response.sendStatus(HttpStatusCode.NO_CONTENT);
   }
 }
 
