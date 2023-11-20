@@ -16,6 +16,7 @@ module.exports = {
     "no-promise-executor-return": "off",
     "import/no-extraneous-dependencies": "off",
     "consistent-return": "off",
+    "import/prefer-default-export": "off",
     "no-unused-vars": ["error", { argsIgnorePattern: "next" }],
   },
 };
