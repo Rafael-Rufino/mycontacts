@@ -20,7 +20,7 @@ const UseHome = () => {
         const contactsList = await ContactsService.listContacts(orderBy);
         setContacts(contactsList);
       } catch (error) {
-        throw new Error('Error', error);
+        throw new Error(error);
       } finally {
         setIsLoading(false);
       }
