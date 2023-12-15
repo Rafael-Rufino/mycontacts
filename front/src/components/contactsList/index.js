@@ -16,12 +16,13 @@ export function ContactsList({
   onToggleOrderBy,
   orderBy,
   contactsData,
+  contacts,
   hasError,
   onTryAgain,
   isLoading,
 }) {
   const contactNumber = contactsData.length;
-  const hasContacts = contactNumber > 0;
+  const hasContacts = contacts.length > 0;
 
   return (
     <S.Container>
@@ -46,20 +47,6 @@ export function ContactsList({
         </S.CommandLink>
       </S.Header>
 
-      {(contactNumber < 1 && !isLoading) && (
-        <S.EmptyListContainer>
-          <img src={emptyBox} alt="Empty box" />
-          <p>
-            Você ainda não tem nenhum contato cadastrado!
-            Clique no botão
-            {' '}
-            <strong>”Novo contato”</strong>
-            {' '}
-            à cima para cadastrar o seu primeiro!
-          </p>
-        </S.EmptyListContainer>
-      )}
-
       {hasError && (
         <S.ErrorContainer>
           <img src={sad} alt="Sad" />
@@ -73,32 +60,47 @@ export function ContactsList({
       )}
 
       {!hasError && (
-        <S.ListContainer>
-          {hasContacts && (
-            <S.ButtonContainer>
-              <Button
-                orderBy={orderBy}
-                onClick={onToggleOrderBy}
-                variant="link"
-                icon={<FiArrowUp size={24} />}
-              >
-                Nome
-              </Button>
-            </S.ButtonContainer>
+        <>
+          {(contacts.length < 1 && !isLoading) && (
+            <S.EmptyListContainer>
+              <img src={emptyBox} alt="Empty box" />
+              <p>
+                Você ainda não tem nenhum contato cadastrado!
+                Clique no botão
+                {' '}
+                <strong>”Novo contato”</strong>
+                {' '}
+                à cima para cadastrar o seu primeiro!
+              </p>
+            </S.EmptyListContainer>
           )}
+          <S.ListContainer>
+            {contactsData.length > 0 && (
+              <S.ButtonContainer>
+                <Button
+                  orderBy={orderBy}
+                  onClick={onToggleOrderBy}
+                  variant="link"
+                  icon={<FiArrowUp size={24} />}
+                >
+                  Nome
+                </Button>
+              </S.ButtonContainer>
+            )}
 
-          {contactsData.map((contact) => (
-            <ContanctInfo
-              key={contact.id}
-              id={contact.id}
-              name={contact.name}
-              midia={contact.category_name}
-              email={contact.email}
-              phone={contact.phone}
-              nameConfirme={contact.name}
-            />
-          ))}
-        </S.ListContainer>
+            {contactsData.map((contact) => (
+              <ContanctInfo
+                key={contact.id}
+                id={contact.id}
+                name={contact.name}
+                midia={contact.category_name}
+                email={contact.email}
+                phone={contact.phone}
+                nameConfirme={contact.name}
+              />
+            ))}
+          </S.ListContainer>
+        </>
       )}
 
     </S.Container>
