@@ -8,7 +8,7 @@ class HttpClient {
 
   async get(path) {
     await delay(500);
-    const response = await fetch(`${this.baseURL}${path}}`);
+    const response = await fetch(`${this.baseURL}${path}`);
 
     let body = null;
     const contentType = response.headers.get('Content-Type');
