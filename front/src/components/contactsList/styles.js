@@ -7,8 +7,27 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ justifyContent }) => justifyContent};
   align-items:  center;
+  border-bottom: ${({ theme }) => `2px solid ${theme.colors.gray.lighter}`};
+  padding-bottom:  1rem;
+`;
+
+export const ErrorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+`;
+
+export const ErrorContent = styled.div`
+  margin-left: 1.5rem;
+
+  strong{
+    font-size: 1.375rem;
+    display: block;
+    color: ${({ theme }) => theme.colors.danger.main};
+    margin-bottom: 8px;
+  }
 
 `;
 
@@ -42,4 +61,25 @@ export const ButtonContainer = styled.header`
   display: flex;
   width: 100px;
   justify-content: flex-start;
+`;
+
+export const EmptyListContainer = styled.div`
+  display:  flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  align-items: center;
+
+  p{
+    font-size: 1.125rem;
+    text-align: center;
+    color: ${({ theme }) => theme.colors.gray.light};
+    margin-top: 8px;
+    max-width: 402px;
+
+    strong{
+      font-weight: bold;
+      color: ${({ theme }) => theme.colors.primary.main};
+      font-size: 1.125rem;
+    }
+  }
 `;
