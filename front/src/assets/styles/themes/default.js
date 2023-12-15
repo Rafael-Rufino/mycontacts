@@ -13,6 +13,7 @@ export default {
       light: '#BCBCBC',
       main: '#22222',
       dark: '#333',
+      lighter: '#E5E5E5',
     },
 
     primary: {
