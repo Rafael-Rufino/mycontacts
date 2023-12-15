@@ -2,7 +2,6 @@ import { ContactsList } from '../../components/contactsList';
 import { Loader } from '../../components/loader';
 import { SearchInput } from '../../components/searchInput';
 
-import MagnifierQuestion from '../../assets/img/magnifier-question.svg';
 import * as S from './styles';
 import UseHome from './useHome';
 
@@ -16,7 +15,7 @@ export function Home() {
     handleToggleOrderBy,
     handleChangeSearch,
     hasError,
-    loadContacts,
+    handleTryAgain,
   } = UseHome();
 
   const hasContacts = contacts.length > 0;
@@ -38,25 +37,14 @@ export function Home() {
         key={contacts.id}
         hasError={hasError}
         isLoading={isLoading}
-        onTryAgain={loadContacts}
+        onTryAgain={handleTryAgain}
         onToggleOrderBy={handleToggleOrderBy}
         orderBy={orderBy}
-        contactsData={filteredContacts}
         contacts={contacts}
-      />
+        contactsData={filteredContacts}
+        searchTerm={searchTerm}
 
-      {(hasContacts && filteredContacts.length < 1) && (
-        <S.SearchNotFoundContainer>
-          <img src={MagnifierQuestion} alt="Magnifier question" />
-          <span>
-            Nenhum resultado foi encontrado para
-            <strong>
-              {` "${searchTerm}" `}
-              .
-            </strong>
-          </span>
-        </S.SearchNotFoundContainer>
-      )}
+      />
 
     </S.Container>
   );

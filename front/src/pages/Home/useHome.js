@@ -23,7 +23,7 @@ const UseHome = () => {
 
       setHasError(false);
       setContacts(contactsList);
-    } catch (error) {
+    } catch {
       setHasError(true);
     } finally {
       setIsLoading(false);
@@ -34,13 +34,17 @@ const UseHome = () => {
     loadContacts();
   }, [loadContacts]);
 
-  const handleToggleOrderBy = async () => {
+  function handleToggleOrderBy() {
     setOrderBy((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
-  };
+  }
 
   const handleChangeSearch = (event) => {
     setSearchTerm(event.target.value);
   };
+
+  function handleTryAgain() {
+    loadContacts();
+  }
 
   return {
     isLoading,
@@ -49,9 +53,9 @@ const UseHome = () => {
     filteredContacts,
     handleToggleOrderBy,
     handleChangeSearch,
+    handleTryAgain,
     contacts,
     hasError,
-    loadContacts,
   };
 };
 

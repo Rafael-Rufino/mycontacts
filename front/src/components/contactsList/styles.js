@@ -83,3 +83,15 @@ export const EmptyListContainer = styled.div`
     }
   }
 `;
+export const SearchNotFoundContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-top: 1rem;
+
+  span{
+    font-size: 1rem;
+    color: ${({ theme }) => theme.colors.gray.light};
+    word-break: break-word;
+  }
+`;

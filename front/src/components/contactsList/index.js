@@ -5,6 +5,7 @@ import { FiArrowUp } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import emptyBox from '../../assets/img/empty-box.svg';
+import MagnifierQuestion from '../../assets/img/magnifier-question.svg';
 import sad from '../../assets/img/sad.svg';
 
 import { Button } from '../button';
@@ -16,10 +17,11 @@ export function ContactsList({
   onToggleOrderBy,
   orderBy,
   contactsData,
-  contacts,
   hasError,
   onTryAgain,
   isLoading,
+  contacts,
+  searchTerm,
 }) {
   const contactNumber = contactsData.length;
   const hasContacts = contacts.length > 0;
@@ -59,6 +61,19 @@ export function ContactsList({
         </S.ErrorContainer>
       )}
 
+      {(hasContacts && contactsData.length < 1) && (
+        <S.SearchNotFoundContainer>
+          <img src={MagnifierQuestion} alt="Magnifier question" />
+          <span>
+            Nenhum resultado foi encontrado para
+            <strong>
+              {` "${searchTerm}" `}
+              .
+            </strong>
+          </span>
+        </S.SearchNotFoundContainer>
+      )}
+
       {!hasError && (
         <>
           {(contacts.length < 1 && !isLoading) && (
@@ -75,7 +90,7 @@ export function ContactsList({
             </S.EmptyListContainer>
           )}
           <S.ListContainer>
-            {contactsData.length > 0 && (
+            {contactsData.length > 0 && hasContacts && (
               <S.ButtonContainer>
                 <Button
                   orderBy={orderBy}
