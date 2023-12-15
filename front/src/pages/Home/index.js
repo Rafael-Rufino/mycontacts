@@ -14,23 +14,35 @@ export function Home() {
     filteredContacts,
     handleToggleOrderBy,
     handleChangeSearch,
+    hasError,
+    loadContacts,
   } = UseHome();
+
+  const hasContacts = contacts.length > 0;
 
   return (
     <S.Container>
       <Loader isLoading={isLoading} />
-      <SearchInput
-        type="text"
-        placeholder="Pesquisar pelo nome"
-        value={searchTerm}
-        onChange={handleChangeSearch}
-      />
+
+      {hasContacts && (
+        <SearchInput
+          type="text"
+          placeholder="Pesquisar pelo nome"
+          value={searchTerm}
+          onChange={handleChangeSearch}
+        />
+      )}
+
       <ContactsList
+        hasError={hasError}
+        isLoading={isLoading}
         key={contacts.id}
+        onTryAgain={loadContacts}
         onToggleOrderBy={handleToggleOrderBy}
         orderBy={orderBy}
         contactsData={filteredContacts}
       />
+
     </S.Container>
   );
 }

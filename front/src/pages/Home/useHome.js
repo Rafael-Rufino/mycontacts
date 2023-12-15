@@ -1,4 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import ContactsService from '../../services/ContactsService';
 
 const UseHome = () => {
@@ -6,6 +8,7 @@ const UseHome = () => {
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   const filteredContacts = useMemo(() => contacts.filter(
     (contact) => (
@@ -13,21 +16,23 @@ const UseHome = () => {
     ),
   ), [contacts, searchTerm]);
 
-  useEffect(() => {
-    const fetchContacts = async () => {
-      try {
-        setIsLoading(true);
-        const contactsList = await ContactsService.listContacts(orderBy);
-        setContacts(contactsList);
-      } catch (error) {
-        throw new Error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const loadContacts = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const contactsList = await ContactsService.listContacts(orderBy);
 
-    fetchContacts();
+      setHasError(false);
+      setContacts(contactsList);
+    } catch (error) {
+      setHasError(true);
+    } finally {
+      setIsLoading(false);
+    }
   }, [orderBy]);
+
+  useEffect(() => {
+    loadContacts();
+  }, [loadContacts]);
 
   const handleToggleOrderBy = async () => {
     setOrderBy((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
@@ -45,6 +50,8 @@ const UseHome = () => {
     handleToggleOrderBy,
     handleChangeSearch,
     contacts,
+    hasError,
+    loadContacts,
   };
 };
 
