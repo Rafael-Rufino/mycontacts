@@ -24,8 +24,12 @@ export function Modal({
         </S.Description>
         <S.Footer>
           <S.Wrapper>
-            <Button type="button" name={cancelButton} variant="link" color="gray" title="cancelar" onClick={closeModal} />
-            <Button name={confirmButton} variant="primary" color={isDanger ? 'danger' : 'primary'} title="remover" onClick={confirmActionDelete} />
+            <Button type="button" variant="link" color="gray" title="cancelar" onClick={closeModal}>
+              {cancelButton}
+            </Button>
+            <Button variant="primary" color={isDanger ? 'danger' : 'primary'} title="remover" onClick={confirmActionDelete}>
+              {confirmButton}
+            </Button>
           </S.Wrapper>
         </S.Footer>
       </S.Container>

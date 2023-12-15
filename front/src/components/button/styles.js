@@ -9,7 +9,7 @@ export const ContainerButton = styled.button`
   font-weight: bold;
   transition: all 0.2s ease-in;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.125rem;
   padding: 4px 16px;
   justify-content: center;
 
@@ -71,8 +71,4 @@ export const IconButton = styled.span`
     transform: ${({ orderBy }) => (orderBy === 'asc' ? 'rotate(180deg)' : 'rotate(0deg)')};
     transition: all 0.2s ease-in;
   }
-`;
-
-export const TextButton = styled.span`
-  font-size: 1.125rem;
 `;

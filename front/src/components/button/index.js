@@ -5,11 +5,15 @@ import React from 'react';
 import * as S from './styles';
 
 export function Button({
-  name, icon, variant, orderBy, ...rest
+  icon,
+  variant,
+  orderBy,
+  children,
+  ...rest
 }) {
   return (
     <S.ContainerButton variant={variant} {...rest}>
-      <S.TextButton>{name}</S.TextButton>
+      {children}
       {icon && (
         <S.IconButton orderBy={orderBy}>{icon}</S.IconButton>
       )}
@@ -18,9 +22,9 @@ export function Button({
 }
 
 Button.prototype = {
-  name: PropTypes.string.isRequired,
   icon: PropTypes.element,
   variant: PropTypes.oneOf(['primary', 'outline', 'link']),
+  children: PropTypes.node.isRequired,
   orderBy: PropTypes.string.isRequired,
 };
 

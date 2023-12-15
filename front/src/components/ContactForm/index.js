@@ -125,7 +125,9 @@ export function ContactForm({ buttonLabel }) {
       </FormGroup>
 
       <S.ButtonContainer>
-        <Button name={buttonLabel} variant="primary" type="submit" disabled={!isFormValid} />
+        <Button variant="primary" type="submit" disabled={!isFormValid}>
+          {buttonLabel}
+        </Button>
       </S.ButtonContainer>
 
     </S.Form>
