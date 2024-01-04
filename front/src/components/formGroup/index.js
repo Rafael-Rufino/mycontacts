@@ -2,10 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import * as S from './styles';
 
-export function FormGroup({ children, error }) {
+export function FormGroup({ children, error, isLoading }) {
   return (
     <S.Container>
-      {children}
+      <S.FormItem>
+        {children}
+        {isLoading && <S.Loader />}
+      </S.FormItem>
       {error && <S.Error>{error}</S.Error>}
     </S.Container>
   );
@@ -14,8 +17,10 @@ export function FormGroup({ children, error }) {
 FormGroup.prototype = {
   children: PropTypes.node.isRequired,
   error: PropTypes.string,
+  isLoading: PropTypes.bool,
 };
 
 FormGroup.defaultProps = {
   error: null,
+  isLoading: false,
 };

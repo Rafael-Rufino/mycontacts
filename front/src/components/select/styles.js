@@ -18,4 +18,9 @@ export const ContainerSelect = styled.select`
   &:focus{
     border: 2px solid ${({ theme }) => theme.colors.primary.main};
   }
+
+  &[disabled]{
+    background: ${({ theme }) => theme.colors.gray.lighter};
+    border: 2px solid  ${({ theme }) => theme.colors.gray.light};
+  }
 `;
