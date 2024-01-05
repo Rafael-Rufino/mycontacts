@@ -1,7 +1,7 @@
 import {
   useCallback, useEffect, useMemo, useState,
 } from 'react';
-import ContactsService from '../../services/ContactsService';
+import ContactsService from '../../services/http/ContactsService';
 
 const UseHome = () => {
   const [contacts, setContacts] = useState([]);

@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import * as S from './styles';
 
 import useErrors from '../../hooks/useErrors';
-import CategoriesService from '../../services/CategoriesService';
+import CategoriesService from '../../services/http/CategoriesService';
 import formatPhone from '../../utils/formatPhone';
 import isEmailValid from '../../utils/isEmailValid';
 import { Button } from '../button';

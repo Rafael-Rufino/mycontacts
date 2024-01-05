@@ -1,4 +1,4 @@
-import HttpClient from './utils/HttpClient';
+import HttpClient from '../HttpClient';
 
 class ContactsService {
   constructor() {
